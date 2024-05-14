@@ -31,6 +31,8 @@
 /* Definición de botones con su respectivo puerto. */
 #define BOTON2    (0x0010)
 #define BOTON1    (0x0002)
+#define BOTON3    (0x0040)
+#define BOTON4    (0x0080)
 
 /* Definición de led's plasmados en tarjeta con su respectivo puerto. */
 #define LED_ROJO    (0x0001)

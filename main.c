@@ -41,7 +41,7 @@ void main(void)
     /************************************************
     CONFIGURACION DE GPIO
     ************************************************/
-    GPIO_setPinEntradaconPullUp(PUERTO1,BOTON2);                 //PIN P1.4 COMO ENTRADA
+    GPIO_setPinEntradaconPullUp(PUERTO1,BOTON4);                 //PIN P1.4 COMO ENTRADA
     GPIO_setPinEntradaconPullUp(PUERTO1,BOTON1);                 //PIN P1.1 COMO ENTRADA
 
     GPIO_setPinSalida(PUERTO2, LED_ROJO | LED_VERDE |LED_AZUL);  // CONFIGURA PINES 2.0,2.1,2.2  COMO SALIDA (LEDS RGB)"
@@ -52,7 +52,7 @@ void main(void)
     while(1)
     {
 
-        if ( Gpio_Pin_in(BOTON2) != 1)                // ENTRA AL PRESIONAR EL SWITCH DEL PUERTO P1.4 (CUANDO ESTA EN BAJO)
+        if (In_Port2(BOTON4) != 1)                // ENTRA AL PRESIONAR EL SWITCH DEL PUERTO P2.7 (CUANDO ESTA EN BAJO)
                 {
                 GPIO_setPinBajo(PUERTO1, LED_ROJO); //Apagar el led rojo (led 1)
                     if(bandera == FALSE)
@@ -68,23 +68,23 @@ void main(void)
                                 GPIO_setPinBajo(PUERTO2, LED_VERDE);    //APAGA GREEN
                                 GPIO_setPinAlto(PUERTO2,LED_AZUL);    //ENCIENDE BLUE
                                 for(i=RETARDO; i>0 ;i--);
-                             if ( Gpio_Pin_in(BOTON2) != 1) bandera=FALSE;    // ENTRA CUANDO PRESIONAMOS BOTON DE P1.4
-                             while( Gpio_Pin_in(BOTON2) != 1);                //MIENTRAS ESTE PRESIONADO EL BOTON
+                             if (In_Port2(BOTON4) != 1) bandera=FALSE;    // ENTRA CUANDO PRESIONAMOS BOTON DE P1.4
+                             while(In_Port2(BOTON4) != 1);                //MIENTRAS ESTE PRESIONADO EL BOTON
                             }
                         }
                  GPIO_setPinBajo(PUERTO2, LED_ROJO | LED_VERDE |LED_AZUL);  //APAGA TODOS
                 }
 
 
-        if ( Gpio_Pin_in(BOTON1) != 1) {
+        if ( In_Port2(BOTON3) != 1) {  // ENTRA AL PRESIONAR EL BOTON DEL PUERTO P2.6 (CUANDO ESTA EN BAJO)
             if(bandera == FALSE){
                 bandera = TRUE; //BANDERA EN ALTO
                 while (bandera==TRUE){
                     GPIO_setPinAlto(PUERTO1,LED_ROJO); //ENCIENDE RED
                     for(i=RETARDO; i>0 ;i--);
                     GPIO_setPinBajo(PUERTO1, LED_ROJO); //APAGA rojo
-                    if ( Gpio_Pin_in(BOTON1) != 1) bandera=FALSE; // ENTRA CUANDO PRESIONAMOS BOTON DE P1.0
-                   while(  Gpio_Pin_in(BOTON1) != 1); //MIENTRAS ESTE PRESIONADO EL BOTON
+                    if ( In_Port2(BOTON3) != 1) bandera=FALSE; // ENTRA CUANDO PRESIONAMOS BOTON DE P1.0
+                   while(  In_Port2(BOTON3) != 1); //MIENTRAS ESTE PRESIONADO EL BOTON
                 }
                 // Establecer la bandera a FALSE una vez que salimos del bucle interno
                 bandera = FALSE;
