@@ -41,13 +41,7 @@ void main(void)
     /************************************************
     CONFIGURACION DE GPIO
     ************************************************/
-    GPIO_setPinEntradaconPullUp(PUERTO1,BOTON4);                 //PIN P1.4 COMO ENTRADA
-    GPIO_setPinEntradaconPullUp(PUERTO1,BOTON1);                 //PIN P1.1 COMO ENTRADA
-
-    GPIO_setPinSalida(PUERTO2, LED_ROJO | LED_VERDE |LED_AZUL);  // CONFIGURA PINES 2.0,2.1,2.2  COMO SALIDA (LEDS RGB)"
-    GPIO_setPinSalida(PUERTO1, LED_ROJO);                         // CONFIGURA PINES 1.0  COMO SALIDA (LED ROJO)"
-    GPIO_setPinBajo(PUERTO2, LED_ROJO | LED_VERDE |LED_AZUL);    // APAGADOS RGB
-    GPIO_setPinBajo(PUERTO1, LED_ROJO );                          // APAGADOS ROJO
+    Gpio_init2021();
 
     while(1)
     {

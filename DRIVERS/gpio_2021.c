@@ -22,6 +22,7 @@
  * Alfredo Chacon y el TecNM /IT Chihuahua no son responsables del mal uso de este material.
  *************************************************************************************************/
 #include "gpio_2021.h"
+#include "DRIVERS\BSP.h"
 
 /* Declaración del arreglo GPIO_PORT_TO_BASE
  * En el cual se encuentran las direcciones en donde comienzan
@@ -63,6 +64,16 @@ uint8_t  Gpio_Pin_in( uint_fast16_t pin_)
     if (inputPinValue > 0)                          // RETORNA EL VALOR 1 o 0
         return (0x01);
     return (0x00);
+}
+/******************************************************************************/
+void Gpio_init2021 (){
+    GPIO_setPinEntradaconPullUp(PUERTO2,BOTON4);                 //PIN P1.4 COMO ENTRADA
+    GPIO_setPinEntradaconPullUp(PUERTO2,BOTON3);                 //PIN P1.1 COMO ENTRADA
+
+    GPIO_setPinSalida(PUERTO2, LED_ROJO | LED_VERDE |LED_AZUL);  // CONFIGURA PINES 2.0,2.1,2.2  COMO SALIDA (LEDS RGB)"
+    GPIO_setPinSalida(PUERTO1, LED_ROJO);                         // CONFIGURA PINES 1.0  COMO SALIDA (LED ROJO)"
+    GPIO_setPinBajo(PUERTO2, LED_ROJO | LED_VERDE |LED_AZUL);    // APAGADOS RGB
+    GPIO_setPinBajo(PUERTO1, LED_ROJO);                          // APAGADOS ROJO
 }
                                                    // <-- E8
 /******************************************************************************
